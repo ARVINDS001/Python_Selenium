@@ -29,7 +29,7 @@ pipeline {
                 call %VENV%\\Scripts\\activate
 
                 python -m pip install --upgrade pip
-                pip install -r requirement.txt
+                pip install -r requirements.txt
                 '''
             }
         }
