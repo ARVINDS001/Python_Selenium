@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         VENV = "venv"
-        PYTHON = "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
     }
 
     stages {
@@ -11,8 +10,11 @@ pipeline {
         stage('Create Virtual Environment') {
             steps {
                 bat '''
-                if exist %VENV% rmdir /S /Q %VENV%
-                "%PYTHON%" -m venv %VENV%
+                if exist %VENV% (
+                    rmdir /S /Q %VENV%
+                )
+
+                python -m venv %VENV%
                 '''
             }
         }
@@ -21,7 +23,9 @@ pipeline {
             steps {
                 bat '''
                 call %VENV%\\Scripts\\activate
+
                 python -m pip install --upgrade pip
+
                 pip install -r requirements.txt
                 '''
             }
@@ -31,6 +35,7 @@ pipeline {
             steps {
                 bat '''
                 call %VENV%\\Scripts\\activate
+
                 python Data_Driven_Excel\\Data_Driven_openpyxl.py
                 '''
             }
@@ -40,6 +45,14 @@ pipeline {
     post {
         always {
             echo 'Pipeline Finished.'
+        }
+
+        success {
+            echo 'Automation executed successfully.'
+        }
+
+        failure {
+            echo 'Automation execution failed.'
         }
     }
 }
