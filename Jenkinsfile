@@ -36,4 +36,18 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            echo 'Pipeline Finished.'
+        }
+
+        success {
+            echo 'Automation executed successfully.'
+        }
+
+        failure {
+            echo 'Automation execution failed.'
+        }
+    }
 }
