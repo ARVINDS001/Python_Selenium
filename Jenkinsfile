@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         VENV = "venv"
+        PYTHON = "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
     }
 
     stages {
@@ -10,9 +11,8 @@ pipeline {
         stage('Create Virtual Environment') {
             steps {
                 bat '''
-                if not exist %VENV% (
-                    python -m venv %VENV%
-                )
+                if exist %VENV% rmdir /S /Q %VENV%
+                "%PYTHON%" -m venv %VENV%
                 '''
             }
         }
@@ -40,14 +40,6 @@ pipeline {
     post {
         always {
             echo 'Pipeline Finished.'
-        }
-
-        success {
-            echo 'Automation executed successfully.'
-        }
-
-        failure {
-            echo 'Automation execution failed.'
         }
     }
 }
