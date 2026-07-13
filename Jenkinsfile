@@ -7,12 +7,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Create Virtual Environment') {
             steps {
                 bat '''
@@ -42,20 +36,6 @@ pipeline {
                 python Data_Driven_Excel\\Data_Driven_openpyxl.py
                 '''
             }
-        }
-    }
-
-    post {
-        always {
-            echo 'Pipeline Finished.'
-        }
-
-        success {
-            echo 'Automation executed successfully.'
-        }
-
-        failure {
-            echo 'Automation execution failed.'
         }
     }
 }
