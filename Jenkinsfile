@@ -21,7 +21,6 @@ pipeline {
             steps {
                 bat '''
                 call %VENV%\\Scripts\\activate
-
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
                 '''
@@ -32,7 +31,6 @@ pipeline {
             steps {
                 bat '''
                 call %VENV%\\Scripts\\activate
-
                 python Data_Driven_Excel\\Data_Driven_openpyxl.py
                 '''
             }
