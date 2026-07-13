@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 print("--- Easy method to read Excel data using openpyxl ---")
 
 # 1. Load the Excel workbook and sheet using openpyxl
-workbook = openpyxl.load_workbook('credentials.xlsx')
+workbook = openpyxl.load_workbook('Credentials.xlsx')
 sheet = workbook.active  # Selects the first active sheet 
 
 # Get the name of the second sheet (Index 1)
